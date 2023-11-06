@@ -112,7 +112,7 @@ public:
 	cv::resize(mask[j], resized, cv::Size(width, height), 0, 0, cv::INTER_NEAREST);
 	if (get_lidar_flg()) {
 	  cv::Mat bev = _p_net->get_bev_from_lidar(curImage, resized);
-	  cv::imwrite("bev" + ".jpg", bev);
+	  cv::imwrite("bev.jpg", bev);
 	  if (flg_save) {
 	    fs::path p = save_path;
 	    p.append("bev");
