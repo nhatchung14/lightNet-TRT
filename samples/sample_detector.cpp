@@ -170,8 +170,8 @@ int main(int argc, char** argv)
 	if (dont_show == true) {
 	  continue;
 	}	
-	cv::namedWindow("image" + std::to_string(i), cv::WINDOW_NORMAL);
-	cv::imshow("image"+std::to_string(i), batch_img[i]);
+	//cv::namedWindow("image" + std::to_string(i), cv::WINDOW_NORMAL);
+	cv::imwrite("image"+std::to_string(i)+ ".jpg", batch_img[i]);
 	int k = cv::waitKey(0);
 	if (k == 32) {
 	  cv::Mat tmp = cv::imread(file.path(), cv::IMREAD_UNCHANGED);
@@ -196,7 +196,7 @@ int main(int argc, char** argv)
     }
     cv::Mat frame;
     int count = 0;
-    cv::namedWindow("image" + std::to_string(0), cv::WINDOW_AUTOSIZE);
+    //cv::namedWindow("image" + std::to_string(0), cv::WINDOW_AUTOSIZE);
     while (1) {
       video >> frame;
       if (frame.empty() == true) break;
@@ -229,7 +229,7 @@ int main(int argc, char** argv)
 	  //cv::namedWindow("image" + std::to_string(i), cv::WINDOW_NORMAL);
 	  //cv::namedWindow("image" + std::to_string(i), cv::WINDOW_KEEPRATIO);
 	  //cv::ResizeWindow("image" + std::to_string(i), 960, 640); 
-	  cv::imshow("image"+std::to_string(i), batch_img[i]);
+	  cv::imwrite("image"+std::to_string(i)+ ".jpg", batch_img[i]);
 	}
 	if (flg_save) {
 	  std::ostringstream sout;

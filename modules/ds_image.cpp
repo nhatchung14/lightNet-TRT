@@ -213,8 +213,8 @@ void DsImage::addBBox(BBoxInfo box, const std::string& labelName)
 
 void DsImage::showImage() const
 {
-    cv::namedWindow(m_ImageName);
-    cv::imshow(m_ImageName.c_str(), m_MarkedImage);
+    //cv::namedWindow(m_ImageName);
+    cv::imwrite(m_ImageName.c_str()+ ".jpg", m_MarkedImage);
     cv::waitKey(0);
 }
 

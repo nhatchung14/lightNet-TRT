@@ -186,8 +186,8 @@ int main(int argc, char** argv)
 	for (const auto &r : batch_res2[i]) {
 	  detector2->draw_BBox(batch_img[i], r);	  
 	}	
-	cv::namedWindow("image" + std::to_string(i), cv::WINDOW_NORMAL);
-	cv::imshow("image"+std::to_string(i), batch_img[i]);
+	//cv::namedWindow("image" + std::to_string(i), cv::WINDOW_NORMAL);
+	cv::imwrite("image"+std::to_string(i)+ ".jpg", batch_img[i]);
 	int k = cv::waitKey(0);
 	if (k == 32) {
 	  fs::path p (file.path());
@@ -248,8 +248,8 @@ int main(int argc, char** argv)
 	  detector2->draw_BBox(batch_img[i], r);
 	}		
 	//cv::namedWindow("image" + std::to_string(i), cv::WINDOW_NORMAL);
-	cv::namedWindow("image" + std::to_string(i));
-	cv::imshow("image"+std::to_string(i), batch_img[i]);
+	//cv::namedWindow("image" + std::to_string(i));
+	cv::imwrite("image"+std::to_string(i)+ ".jpg", batch_img[i]);
 
 	if (flg_save) {
 	  std::ostringstream sout;

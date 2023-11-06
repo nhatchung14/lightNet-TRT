@@ -112,7 +112,7 @@ public:
 	cv::resize(mask[j], resized, cv::Size(width, height), 0, 0, cv::INTER_NEAREST);
 	if (get_lidar_flg()) {
 	  cv::Mat bev = _p_net->get_bev_from_lidar(curImage, resized);
-	  cv::imshow("bev", bev);
+	  cv::imwrite("bev" + ".jpg", bev);
 	  if (flg_save) {
 	    fs::path p = save_path;
 	    p.append("bev");
@@ -135,8 +135,8 @@ public:
 	}	
 	cv::addWeighted(vec_image[i], 1.0, resized, 0.5, 0.0, vec_image[i]);
 	
-	cv::namedWindow("mask" + std::to_string(j), cv::WINDOW_NORMAL);
-	cv::imshow("mask"+std::to_string(j), mask[j]);
+	//cv::namedWindow("mask" + std::to_string(j), cv::WINDOW_NORMAL);
+	cv::imwrite("mask"+std::to_string(j)+ ".jpg", mask[j]);
 	if (flg_save) {
 	  fs::path p = save_path;
 	  p.append("segmentation");
@@ -161,7 +161,7 @@ public:
 	}
 	auto depthmap = _p_net->get_depthmap(segmentation);
 	for (uint32_t j = 0; j < depthmap.size(); j++) {
-	  cv::imshow("depthmap"+std::to_string(j), depthmap[j]);
+	  cv::imwrite("depthmap"+std::to_string(j)+ ".jpg", depthmap[j]);
 	}
 	      
       }
@@ -209,14 +209,14 @@ public:
 	//_p_net->visualize_vidar_with_pcl(i, width, height, resized);	
       }
       for (uint32_t j = 0; j < mask.size(); j++) {
-	cv::namedWindow("depth" + std::to_string(j), cv::WINDOW_NORMAL);
-	cv::imshow("depth"+std::to_string(j), mask[j]);
-	cv::namedWindow("bev" + std::to_string(j), cv::WINDOW_NORMAL);
-	cv::imshow("bev"+std::to_string(j), bev);
+	//cv::namedWindow("depth" + std::to_string(j), cv::WINDOW_NORMAL);
+	cv::imwrite("depth"+std::to_string(j)+ ".jpg", mask[j]);
+	//cv::namedWindow("bev" + std::to_string(j), cv::WINDOW_NORMAL);
+	cv::imwrite("bev"+std::to_string(j)+ ".jpg", bev);
 	//cv::namedWindow("filtered_bev" + std::to_string(j), cv::WINDOW_NORMAL);
-	//cv::imshow("filtered_bev"+std::to_string(j), filtered_bev);
-	cv::namedWindow("height_map" + std::to_string(j), cv::WINDOW_NORMAL);
-	cv::imshow("height_map"+std::to_string(j), height_map);		
+	//cv::imwrite("filtered_bev"+std::to_string(j)+ ".jpg", filtered_bev);
+	//cv::namedWindow("height_map" + std::to_string(j), cv::WINDOW_NORMAL);
+	cv::imwrite("height_map"+std::to_string(j)+ ".jpg", height_map);		
 	
 	if (flg_save) {
 	  cv::Mat resized;
